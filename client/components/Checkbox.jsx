@@ -29,21 +29,22 @@ class Checkbox extends Component {
 }
 
 Checkbox.propTypes = {
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
 }
 
 const mapStateToProps = state => {
-  return {
-    name: state.name
-  }
+    const {name} = state.name;
+    return {
+        name
+    }
 }
 
 const mapDispatchToProps = dispatch => {
-  return { 
-    onClickCallback: () => {
-      dispatch({ type: 'CHECKBOX_CLICKED', name: 'Modified name'})
+    return { 
+        onClickCallback: () => {
+            dispatch({ type: 'CHECKBOX_CLICKED', name: 'Modified name'})
+        }
     }
-  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Checkbox);
