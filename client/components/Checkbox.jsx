@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
 class Checkbox extends Component {
 
@@ -11,14 +12,13 @@ class Checkbox extends Component {
     }
 
     onClickHandler() {
+        this.props.onClickCallback();
         this.setState({
             isChecked: !this.state.isChecked 
         });
     }
 
     render() {
-        console.log("name i render: " + this.props.name);
-
         return (
             <div>
             <input type="checkbox" onClick={this.onClickHandler}/>
@@ -28,17 +28,20 @@ class Checkbox extends Component {
     }
 }
 
-function mapStateToProps(state) {
+Checkbox.propTypes = {
+    name: PropTypes.string.isRequired,
+}
+
+const mapStateToProps = state => {
   return {
     name: state.name
   }
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = dispatch => {
   return { 
-    onClickHandler: () => {
-      console.log("i onclick");
-      return dispatch({ type: 'CHECKBOX_CLICKED'})
+    onClickCallback: () => {
+      dispatch({ type: 'CHECKBOX_CLICKED', name: 'Modified name'})
     }
   }
 }

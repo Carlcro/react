@@ -4,12 +4,20 @@ import App from './components/App.jsx';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 
-function reducer(state = '', action) {
-    console.log('i reducer: ' + state);
-  return state
+const initialState = {
+    name: 'Default name',
+};
+
+function nameReducer(state = initialState, action) {
+    switch(action.type) {
+        case 'CHECKBOX_CLICKED':
+            return Object.assign({}, state, { name: action.name });
+        default:
+            return state;
+    }
 }
 
-let store = createStore(reducer)
+let store = createStore(nameReducer)
 
 ReactDOM.render(
     <Provider store={store}>
