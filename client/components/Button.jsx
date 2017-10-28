@@ -5,17 +5,15 @@ export default class Button extends React.Component{
 
   constructor(props){
     super(props);
-    this.state = {counter: this.props.init,
-                  name: "calle"}
+    this.state = {counter: this.props.init }
 
     this.buttonHandler = this.buttonHandler.bind(this)
   }
 
   buttonHandler()
   {
-    let {counter, name} = this.state
+    let {counter} = this.state
     this.setState({counter: counter+1})
-    console.log(name)
   }
 
   render(){
