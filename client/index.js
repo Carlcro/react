@@ -17,7 +17,10 @@ function nameReducer(state = initialState, action) {
     }
 }
 
-let store = createStore(nameReducer)
+let store = createStore(
+        nameReducer, 
+        window.devToolsExtension ? window.devToolsExtension() : f => f
+    );
 
 ReactDOM.render(
     <Provider store={store}>
